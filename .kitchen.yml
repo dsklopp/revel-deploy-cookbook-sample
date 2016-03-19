@@ -1,0 +1,24 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 1
+    memory: 1024
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    driver:
+      network:
+        - ["private_network", {ip: "192.168.17.11"}]
+      customize:
+        cpus: 1
+        memory: 2048
+    run_list:
+      - recipe[revel-deploy-cookbook::default]
+    attributes:
